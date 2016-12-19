@@ -1,6 +1,8 @@
 package hand.zjf.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,19 @@ public class DeleteFilmServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FilmOperationDao fod = new FilmOperationDaoImpl();
-		response.sendRedirect(request.getContextPath()+"/GetFilmList");
+		String filmId1 = request.getParameter("filmId");
+		int filmId =  Integer.parseInt(filmId1);
+		try {
+			int flag = fod.deleteFilm(filmId);
+			if(flag==1){
+				request.setAttribute("msg", "É¾³ý³É¹¦");
+			}else{
+				request.setAttribute("msg", "É¾³ýÊ§°Ü");
+			}
+			request.getRequestDispatcher("/jsp/msg.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -12,36 +12,37 @@ import hand.zjf.dao.FilmOperationDao;
 import hand.zjf.dao.impl.FilmOperationDaoImpl;
 import hand.zjf.entity.Film;
 
-
-public class SaveAddFilmServlet extends HttpServlet {
+public class ModifyFilmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SaveAddFilmServlet() {
+    public ModifyFilmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FilmOperationDao fod = new FilmOperationDaoImpl();
-		String title=request.getParameter("title");
+		int filmId = Integer.parseInt(request.getParameter("filmId"));
+		String title = request.getParameter("title");
 		String description = request.getParameter("description");
 		String language = request.getParameter("language");
 		Film film = new Film();
+		film.setFilmId(filmId);
 		film.setDescription(description);
-		film.setTitle(title);
 		film.setLanguage(language);
+		film.setTitle(title);
 		try {
-			int flag = fod.saveAddFilm(film);
+			int flag = fod.saveModifyFilm(film);
 			if(flag==1){
-				request.setAttribute("msg", "添加数据成功");
+				request.setAttribute("msg", "修改成功");
 			}else{
-				request.setAttribute("msg", "添加数据失败");
+				request.setAttribute("msg", "编辑失败");
 			}
-			
 			request.getRequestDispatcher("/jsp/msg.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 }

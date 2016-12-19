@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import hand.zjf.connection.ConnectionFactory;
 import hand.zjf.dao.FilmOperationDao;
 import hand.zjf.entity.Film;
@@ -57,25 +59,29 @@ public class FilmOperationDaoImpl implements FilmOperationDao{
 	@Override
 	public int saveAddFilm(Film film) throws SQLException {
 
-//		ResultSet rSet1;
+		ResultSet rSet;
 		ConnectionFactory conf = ConnectionFactory.getInstance();
 		Connection connection = conf.getConnection();
-		String sql1 = "insert into film(description,title,language_id) values(?,?,?)";
-//		String sql2 = "select language_id from language where name = ?";
-		PreparedStatement ps = connection.prepareStatement(sql1);
-//		PreparedStatement ps1 = connection.prepareStatement(sql2);
-
-//		ps1.setString(1, film.getLanguage());
-//		rSet1 = ps1.executeQuery();
-//		int languageId = 0;
-//		while(rSet1.next()){
-//			 languageId = rSet1.getInt("language_id");
-//		}
+		String sql = "insert into film(description,title,language_id) values(?,?,?)";
+		String sql1 = "select language_id from language where name = ?";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		PreparedStatement ps1 = connection.prepareStatement(sql1);
+		ps1.setString(1, film.getLanguage());
+		rSet = ps1.executeQuery();
+		int languageId = 0;
+		while(rSet.next()){
+			 languageId = rSet.getInt("language_id");
+		}
 		ps.setString(1,film.getDescription());
 		ps.setString(2, film.getTitle());
-		ps.setInt(3, 3);
-	    ps.execute();
-		return 1;
+		ps.setInt(3, languageId);
+	    boolean flag = ps.execute();
+	    System.out.println(flag);
+	    int biaoji=0;
+	    if(!flag){
+	    	biaoji=1;
+	    }
+		return biaoji;
 	}
 
 	@Override
@@ -87,8 +93,35 @@ public class FilmOperationDaoImpl implements FilmOperationDao{
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ps.setInt(1, filmId);
 		boolean flag = ps.execute();
-		if(flag)
+		if(!flag)
 			biaoji=1;
+		return biaoji;
+	}
+
+	@Override
+	public int saveModifyFilm(Film film) throws SQLException {
+		ResultSet rSet;
+		ConnectionFactory conf = ConnectionFactory.getInstance();
+		Connection connection = conf.getConnection();
+		String sql = "update film set title = ?,description = ?,language_id = ? where film_id = ?";
+		String sql1 = "select language_id from language where name = ?";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		PreparedStatement ps1 = connection.prepareStatement(sql1);
+		ps1.setString(1, film.getLanguage());
+		rSet = ps1.executeQuery();
+		int languageId=0;
+		while(rSet.next()){
+			languageId = rSet.getInt("language_id");
+		}
+		ps.setString(1, film.getTitle());
+		ps.setString(2,film.getDescription());
+		ps.setInt(3, languageId);
+		ps.setInt(4, film.getFilmId());
+		boolean flag = ps.execute();
+		int biaoji=0;
+		if(!flag){
+			biaoji=1;
+		}
 		return biaoji;
 	}
 }

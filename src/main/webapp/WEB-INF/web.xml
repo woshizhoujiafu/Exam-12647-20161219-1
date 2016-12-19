@@ -81,13 +81,32 @@
   
   <servlet>
   	<servlet-name>deleteFilm</servlet-name>
-  	<servlet-class>hand.zjf.servlet.DeteleFilmServlet</servlet-class>
+  	<servlet-class>hand.zjf.servlet.DeleteFilmServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
   	<servlet-name>deleteFilm</servlet-name>
   	<url-pattern>/deleteFilm</url-pattern>
   </servlet-mapping>
+ 
+  <servlet>
+  	<servlet-name>modifyFilm</servlet-name>
+  	<servlet-class>hand.zjf.servlet.ShowModifyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>modifyFilm</servlet-name>
+  	<url-pattern>/modifyFilm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>saveModifyFilm</servlet-name>
+  	<servlet-class>hand.zjf.servlet.ModifyFilmServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>saveModifyFilm</servlet-name>
+  	<url-pattern>/saveModifyFilm</url-pattern>
+  </servlet-mapping>
+  
   
 
 

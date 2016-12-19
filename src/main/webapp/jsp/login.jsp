@@ -4,14 +4,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
 <title>Insert title here</title>
+<style type="text/css">
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#login{
+	margin-top:100px;
+	width: auto;
+	height: auto;
+	text-align: center;
+}
+
+#oper{
+	margin-top: 10px;
+	width: 100px;
+	height: auto;
+	background-color: #a7b6ae;
+}
+
+#operul{
+	margin-top:20px;
+	list-style-type: none;
+}
+
+#operul li{
+	margin-top:10px; 
+}
+
+a:LINK,a:HOVER {
+	text-decoration: none;
+	color: orangess;
+}
+
+
+a:VISITED {
+	color: red;
+}
+
+#addfilm{
+	width: auto;
+	height: auto;
+	text-align: center;
+}
+
+#op{
+	width: 150px;
+}
+</style>
 </head>
 <body>
 	<%
 	  session.setAttribute("flag", "error");
     %>
-
 	<div id="oper">
 		<ul id="operul">
 			<li><a href="<%=request.getContextPath()%>/GetFilmList">film列表显示</a></li>

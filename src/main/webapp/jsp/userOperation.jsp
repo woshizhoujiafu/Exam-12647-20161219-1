@@ -15,8 +15,6 @@
 		<ul id="operul">
 			<li><a href="<%=request.getContextPath()%>/GetFilmList">film列表显示</a></li>
 			<li><a href="<%=request.getContextPath()%>/GetLanguage">film信息添加</a></li>
-		<!-- 	<li><a href="<%=request.getContextPath()%>/ShowDeleteFilm">film信息删除</a></li>-->
-			<li><a href="modifyFilm">film信息编辑</a></li>
 			<li><a href="<%=request.getContextPath()%>/jsp/login.jsp">退出</a></li>
 		</ul>
 	</div>

@@ -13,5 +13,7 @@ public interface FilmOperationDao {
 	public int saveAddFilm(Film film) throws SQLException;
 	
 	public int deleteFilm(int filmId) throws SQLException;
+	
+	public int saveModifyFilm(Film film) throws SQLException;
 
 }
