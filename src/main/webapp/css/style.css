@@ -1,0 +1,46 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#login{
+	margin-top:100px;
+	width: auto;
+	height: auto;
+	text-align: center;
+}
+
+#oper{
+	margin-top: 10px;
+	width: 100px;
+	height: auto;
+	background-color: #a7b6ae;
+}
+
+#operul{
+	margin-top:20px;
+	list-style-type: none;
+}
+
+#operul li{
+	margin-top:10px; 
+}
+
+a:LINK,a:HOVER {
+	text-decoration: none;
+}
+
+
+a:VISITED {
+	color: red;
+}
+
+#addfilm{
+	width: auto;
+	height: auto;
+	text-align: center;
+}
+
+#op{
+	width: 150px;
+}
